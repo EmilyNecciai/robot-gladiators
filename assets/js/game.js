@@ -79,4 +79,4 @@ var fight = function() {
 
 
 // FIGHT FUNCTION: CALL
-fight();
+// COMMENT OUT fight();
