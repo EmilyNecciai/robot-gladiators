@@ -1,19 +1,52 @@
-// Creates a function named "fight"
+// PLAYER STATS
 var playerName = window.prompt("What is your robot's name?");
+var playerHealth = 100;
+var playerAttack = 10;
 
-console.log(playerName);
+// Logging all values in console:
+console.log(playerName, playerAttack, playerHealth);
 
-console.log("This logs a string, good for leaving yourslef a message");
+// ENEMY STATS
+var enemyName = "Roborto";
+var enemyHealth = 50;
+var enemyAttack = 12;
 
-//Does math and logs 20
-console.log(10+10)
+// FIGHT FUNCTION: DECLARE
+var fight = function() {
+    window.alert("Welcome to Robot Gladiators!")
 
-// Concatenates a string with a variable.
+    //Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
+    enemyHealth = enemyHealth - playerAttack;
 
-console.log("Our robot's name is " + playerName);
+    // Log a resulting message to the console so we know that it worked.
+    console.log(
+        playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
+    );
 
-function fight() {
-    window.alert("The fight has begun!");
-}
+    if (enemyHealth <= 0) {
+        window.alert(enemyName + " has died!");
+    }
+    else {
+        window.alert(enemyName + " still has " + enemyHealth + " health left.");
+    }
 
-// fight();
+    // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
+    playerHealth = playerHealth - enemyAttack;
+
+    // Log a resulting message to the console so we know that it worked.
+    console.log(
+        enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+    );
+
+    if (playerHealth <= 0) {
+        window.alert(playerName + " has died!");
+    }
+    else {
+        window.alert(playerName + " still has " + playerHealth + " health left.");
+    }
+
+
+};
+
+// FIGHT FUNCTION: CALL
+fight();
