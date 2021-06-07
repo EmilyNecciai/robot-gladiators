@@ -27,7 +27,7 @@ var playerInfo = {
     },
     refillHealth: function() {
         if (this.money >= 7) {
-            window.alert("Refilling player's health by 20 for 7 dollars. You now have " + playerInfo.health + " health and " + (playerInfo.money - 7) + " money remaining.");
+            window.alert("Refilling player's health by 20 for 7 dollars. You now have " + (playerInfo.health + 20) + " health and " + (playerInfo.money - 7) + " money remaining.");
             this.health += 20;
             this.money -= 7;
         } else {
@@ -36,7 +36,7 @@ var playerInfo = {
     },
     upgradeAttack: function() {
         if (this.money >= 7) {
-            window.alert("Upgrading player's attack by 6 for 7 dollars. You now have " + playerInfo.attack + " attack and " + (playerInfo.money - 7) + " money remaining.");
+            window.alert("Upgrading player's attack by 6 for 7 dollars. You now have " + (playerInfo.attack + 6) + " attack and " + (playerInfo.money - 7) + " money remaining.");
             this.attack += 6;
             this.money -=7;
         } else {
@@ -214,7 +214,7 @@ var endGame = function() {
 // SHOP [FUNCTION]
 var shop = function() {
     var shopOptionPrompt = window.prompt(
-        "Would you like to \nREFILL you health, \nUPGRADE your attack, or \nLEAVE the store? \nEnter: '1' to refill, '2' to upgrade, or '3' to leave the store."
+        "You have " + playerInfo.health + " health and " + playerInfo.money + " money. Would you like to \nREFILL you health, \nUPGRADE your attack, or \nLEAVE the store? \nEnter: '1' to refill, '2' to upgrade, or '3' to leave the store."
     );
 
     shopOptionPrompt = parseInt(shopOptionPrompt);
