@@ -60,28 +60,39 @@ var enemyInfo = [
         attack: randomNumber(10, 14)
     }
 ];
+
+// FIGHT OR SKIP [FUNCTION]
+var fightOrSkip = function() {
+    var promptFight = window.prompt('You have ' + playerInfo.health + ' health and ' + playerInfo.money + ' money. \n\nWould you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.')
+    promptFight = promptFight.toLowerCase();
+
+    if (promptFight === "skip") {
+            if (promptFight === "" || promptFight === null) {
+            window.alert("You need to provide a valid answer! Please try again.");
+            return fightOrSkip();
+        }
+
+        if (promptFight === "skip" || promptFight === "SKIP") {
+            var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+
+            if (confirmSkip) {
+                window.alert(playerInfo.name + " has decided to skip this round. Goodbye!");
+                playerInfo.playerMoney = playerInfo.money - 10;
+                return true;
+            }
+        }
+    } else {
+        return false;
+    }
+}
     
 
 // FIGHT [FUNCTION & DECLARATION]
 var fight = function(enemy) {
     while (playerInfo.health > 0 && enemy.health > 0) {
-
-        var promptFight = window.prompt('You have ' + playerInfo.health + ' health and ' + playerInfo.money + ' money.' + '\n\nOpponent: ' + enemy.name + '\nOpponent health: ' + enemy.health + '\n\nWould you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
-
-            // SKIP 
-            if (promptFight === "skip" || promptFight === "SKIP") {
-    
-                var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-    
-                // CONFIRM SKIP
-                if(confirmSkip) {
-                    window.alert(playerInfo.name + ' has decided to skip this fight. Goodbye!');
-                    // Skip Penalty
-                    playerInfo.money = Math.max(0, playerInfo.money - 10);
-                    console.log("playerInfo.money: " + playerInfo.money);
-                    break;
-                }
-            }        
+        if (fightOrSkip()) {
+            break;
+        }
         
             // FIGHT remove the value of `playerInfo.attack` from the value of `enemy.health` and use that result to update the value in the `enemy.health` variable
             //Random damage value based on player's attack power
